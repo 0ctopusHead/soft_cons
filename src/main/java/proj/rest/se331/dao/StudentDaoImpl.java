@@ -20,4 +20,8 @@ public class StudentDaoImpl implements StudentDao {
     public Student getStudent(Long id){
         return studentRepository.findById(id).orElse(null);
     }
+    @Override
+    public Student save(Student student){
+        return studentRepository.save(student);
+    }
 }

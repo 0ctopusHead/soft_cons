@@ -6,4 +6,5 @@ import proj.rest.se331.entity.Student;
 public interface StudentService {
     Page<Student> getStudents(Integer pageSize, Integer page);
     Student getStudent(Long id);
+    Student save(Student student);
 }

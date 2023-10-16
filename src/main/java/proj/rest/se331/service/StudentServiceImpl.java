@@ -18,4 +18,8 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudent(Long id){
         return studentDao.getStudent(id);
     }
+    @Override
+    public Student save(Student student){
+        return  studentDao.save(student);
+    }
 }
