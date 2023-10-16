@@ -1,6 +1,7 @@
 package proj.rest.se331.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
@@ -8,6 +9,7 @@ import proj.rest.se331.entity.Student;
 import proj.rest.se331.repository.StudentRepository;
 @Repository
 @RequiredArgsConstructor
+@Profile("db")
 public class StudentDaoImpl implements StudentDao {
     final StudentRepository studentRepository;
     @Override

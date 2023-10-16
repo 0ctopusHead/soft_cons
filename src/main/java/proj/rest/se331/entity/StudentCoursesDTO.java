@@ -5,16 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseDTO {
+public class StudentCoursesDTO {
     Long id;
     String name;
     String courseID;
     String description;
-    List<CourseEnrolledStudentDTO> enrolledStudents;
 }

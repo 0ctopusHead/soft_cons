@@ -19,4 +19,5 @@ public class StudentDTO {
     String department;
     List<String> images;
     AdvisorStudentDTO advisor;
+    List<StudentCoursesDTO> courses;
 }

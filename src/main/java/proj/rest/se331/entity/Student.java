@@ -3,6 +3,7 @@ package proj.rest.se331.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,5 +25,6 @@ public class Student {
     @ManyToOne
     Advisor advisor;
     @ManyToMany(mappedBy = "enrolledStudents")
-    List<Course> courses;
+    @Builder.Default
+    List<Course> courses = new ArrayList<>();
 }
