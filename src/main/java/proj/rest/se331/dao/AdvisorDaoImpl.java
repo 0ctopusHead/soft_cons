@@ -19,4 +19,8 @@ public class AdvisorDaoImpl implements AdvisorDao {
     public Advisor getAdvisor(Long id){
         return advisorRepository.findById(id).orElse(null);
     }
+    @Override
+    public Advisor save(Advisor advisor){
+        return advisorRepository.save(advisor);
+    }
 }

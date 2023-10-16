@@ -18,4 +18,8 @@ public class AdvisorServiceImpl implements AdvisorService {
     public Advisor getAdvisor(Long id){
         return advisorDao.getAdvisor(id);
     }
+    @Override
+    public Advisor save(Advisor advisor){
+        return advisorDao.save(advisor);
+    }
 }
