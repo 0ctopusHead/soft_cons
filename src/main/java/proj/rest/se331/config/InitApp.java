@@ -33,18 +33,21 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .academicPosition("Professor")
                 .department("SE")
                 .build());
+        advisor1.setImages(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image231.jpg?alt=media&token=e9289abc-e242-4919-b377-969a4964c8db&_gl=1*1fm0yqw*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzY0MzcyOS4zNy4xLjE2OTc2NDM5NzAuNDkuMC4w"));
         advisor2 = advisorRepository.save(Advisor.builder()
                 .name("Noble")
                 .surname("Dickerson")
                 .academicPosition("Assistant Professor")
                 .department("SE")
                 .build());
+        advisor2.setImages(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image465.jpg?alt=media&token=0274145a-6c15-4233-ae9a-15e0a2912418&_gl=1*1f01nq4*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzY0MzcyOS4zNy4xLjE2OTc2NDM5OTMuMjYuMC4w"));
         advisor3 = advisorRepository.save(Advisor.builder()
                 .name("Lynn")
                 .surname("Whitehead")
                 .academicPosition("Instructor")
                 .department("SE")
                 .build());
+        advisor3.setImages(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image123.jpg?alt=media&token=6100ae6e-66da-4a12-81f4-782b5a0a5864&_gl=1*1cjmvbx*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzY0MzcyOS4zNy4xLjE2OTc2NDQwMTAuOS4wLjA."));
 
         course1 = courseRepository.save(Course.builder()
                 .name("Basic AI")

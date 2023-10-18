@@ -43,4 +43,25 @@ public class StudentController {
         Student output = studentService.save(student);
         return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
     }
+    @PostMapping("/students/edit/{id}")
+    public ResponseEntity<?> editStudent(@RequestBody Student student, @PathVariable("id")Long id){
+        Student studentDb = studentService.getStudent(id);
+        if(student.getName() != null){
+            studentDb.setName(student.getName());
+        }
+        if(student.getStudentID() != null){
+            studentDb.setStudentID(student.getStudentID());
+        }
+        if(student.getSurname() != null){
+            studentDb.setSurname(student.getSurname());
+        }
+        if(student.getDepartment() != null){
+            studentDb.setDepartment(student.getDepartment());
+        }
+        if(student.getImages() != null){
+            studentDb.setImages(student.getImages());
+        }
+        Student output = studentService.save(studentDb);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
+    }
 }
