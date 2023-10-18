@@ -18,4 +18,5 @@ public class AdvisorStudentDTO {
     String surname;
     String department;
     List<String> images;
+    List<String> files;
 }

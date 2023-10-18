@@ -22,6 +22,8 @@ public class Advisor {
     String department;
     @ElementCollection
     List<String> images;
+    @ElementCollection
+    List<String> files;
     @OneToMany(mappedBy = "advisor")
     @Builder.Default
     List<Student> advisees = new ArrayList<>();
