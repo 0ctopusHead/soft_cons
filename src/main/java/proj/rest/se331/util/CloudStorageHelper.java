@@ -74,7 +74,14 @@ public class CloudStorageHelper {
         }
         return null;
     }
-    public StorageFileDto getStorageFileDto(MultipartFile file, final String bucket) throws IOException, ServletException{
+    public String getFileUrl(MultipartFile file, final String bucket) throws IOException {
+        final String fileName = file.getOriginalFilename();
+        if(fileName != null && ! fileName.isEmpty() && fileName.contains(".")){
+            return this.uploadFile(file,bucket);
+        }
+        return null;
+    }
+    public StorageFileDto getStorageImageDto(MultipartFile file, final String bucket) throws IOException, ServletException{
         final String fileName = file.getOriginalFilename();
         if(fileName != null && !fileName.isEmpty() && fileName.contains(".")){
             final String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
@@ -88,6 +95,16 @@ public class CloudStorageHelper {
                 }
             }
             throw new ServletException("file must be an image");
+        }
+        return null;
+    }
+    public StorageFileDto getStorageFileDto(MultipartFile file, final String bucket) throws IOException {
+        final String fileName = file.getOriginalFilename();
+        if(fileName != null && !fileName.isEmpty() && fileName.contains(".")){
+            String urlName = this.uploadFile(file,bucket);
+            return StorageFileDto.builder()
+                    .name(urlName)
+                    .build();
         }
         return null;
     }

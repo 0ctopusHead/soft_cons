@@ -19,7 +19,7 @@ import proj.rest.se331.util.LabMapper;
 public class CourseController {
     final CourseService courseService;
     @GetMapping("courses")
-    public ResponseEntity<?> getCourseLists(@RequestParam(value = "_limit",required = false)Integer perPage, @RequestParam(value = "_page")Integer page){
+    public ResponseEntity<?> getCourseLists(@RequestParam(value = "_limit",required = false)Integer perPage, @RequestParam(value = "_page",required = false)Integer page){
         perPage = perPage == null ? 3 : perPage;
         page = page == null ? 1 : page;
         Page<Course> pageOutput;
