@@ -71,6 +71,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .studentID("642115011")
                 .department("SE")
                 .build());
+        student.getImages().add("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image01.png?alt=media&token=12ef7857-3717-4f5e-bc7c-75ce5066222f&_gl=1*1651txx*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI1MjMuNDYuMC4w");
         student.setAdvisor(advisor1);
         student.getCourses().add(course1);
         student.getCourses().add(course2);
@@ -84,6 +85,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .studentID("642115012")
                 .department("SE")
                 .build());
+        student.getImages().add("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image02.png?alt=media&token=81131862-f4cc-4b34-85eb-eef17b819b38&_gl=1*184hcr2*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI2MjUuNjAuMC4w");
         student.setAdvisor(advisor1);
         student.getCourses().add(course2);
         student.getCourses().add(course3);
@@ -97,6 +99,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .studentID("642115015")
                 .department("SE")
                 .build());
+        student.getImages().add("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image03.png?alt=media&token=3b83491a-1186-4829-8ba9-8154676865b2&_gl=1*18e94ih*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI2NTYuMjkuMC4w");
         student.setAdvisor(advisor2);
         student.getCourses().add(course4);
         student.getCourses().add(course1);
@@ -110,6 +113,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .studentID("642115041")
                 .department("SE")
                 .build());
+        student.getImages().add("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image04.png?alt=media&token=a34c4cc7-c024-4513-9a75-f0e98fb43bcf&_gl=1*1ct5mxr*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI2ODguNjAuMC4w");
         student.setAdvisor(advisor2);
         student.getCourses().add(course3);
         student.getCourses().add(course4);
@@ -123,6 +127,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .studentID("642115005")
                 .department("SE")
                 .build());
+        student.getImages().add("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image05.png?alt=media&token=b409b5bf-736e-4c1f-ac95-8e36dfafde7e&_gl=1*1hv8k4d*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI3MTUuMzMuMC4w");
         student.setAdvisor(advisor3);
         student.getCourses().add(course1);
         student.getCourses().add(course4);
