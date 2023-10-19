@@ -2,13 +2,16 @@ package proj.rest.se331.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import proj.rest.se331.entity.Advisor;
 import proj.rest.se331.entity.Student;
+import proj.rest.se331.service.AdvisorService;
 import proj.rest.se331.service.StudentService;
 import proj.rest.se331.util.LabMapper;
 
@@ -16,12 +19,20 @@ import proj.rest.se331.util.LabMapper;
 @RequiredArgsConstructor
 public class StudentController {
     final StudentService studentService;
+    final AdvisorService advisorService;
     @GetMapping("students")
-    public ResponseEntity<?> getStudentLists(@RequestParam(value = "_limit",required = false)Integer perPage,@RequestParam(value = "_page",required = false)Integer page){
+    public ResponseEntity<?> getStudentLists(@RequestParam(value = "_limit",required = false)Integer perPage
+            , @RequestParam(value = "_page",required = false)Integer page
+            , @RequestParam(value = "_query", required = false)String query){
         perPage = perPage == null ? 3 : perPage;
         page = page == null ? 1 : page;
         Page<Student> pageOutput;
-        pageOutput = studentService.getStudents(perPage, page);
+        if(query == null){
+            pageOutput = studentService.getStudents(perPage, page);
+        }
+        else{
+            pageOutput =studentService.getStudents(query, PageRequest.of(page - 1, perPage));
+        }
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count",
                 String.valueOf(pageOutput.getTotalElements()));
@@ -68,7 +79,7 @@ public class StudentController {
     public ResponseEntity<?> editStudentAdvisor(@RequestBody Student student, @PathVariable("id")Long id){
         Student studentDb = studentService.getStudent(id);
         studentDb.setAdvisor(student.getAdvisor());
-        Student output = studentService.save(studentDb);
+        Student output = studentService.editStudentAdvisor(studentDb);
         return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
     }
 }
