@@ -12,6 +12,8 @@ import proj.rest.se331.entity.Advisor;
 import proj.rest.se331.service.AdvisorService;
 import proj.rest.se331.util.LabMapper;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class AdvisorController {
@@ -41,6 +43,24 @@ public class AdvisorController {
     @PostMapping("/advisors")
     public ResponseEntity<?> addAdvisor(@RequestBody Advisor advisor){
         Advisor output = advisorService.save(advisor);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getAdvisorDTO(output));
+    }
+    @PostMapping("/advisors/edit/{id}")
+    public ResponseEntity<?> edit(@RequestBody Advisor advisor, @PathVariable("id")Long id){
+        Advisor advisorDb = advisorService.getAdvisor(id);
+        if(advisor.getName() != null){
+            advisorDb.setName(advisor.getName());
+        }
+        if(advisor.getSurname() != null){
+            advisorDb.setSurname(advisor.getSurname());
+        }
+        if(advisor.getAcademicPosition() != null){
+            advisorDb.setAcademicPosition(advisor.getAcademicPosition());
+        }
+        if(advisor.getImages() != null){
+            advisorDb.setImages(advisor.getImages());
+        }
+        Advisor output = advisorService.save(advisorDb);
         return ResponseEntity.ok(LabMapper.INSTANCE.getAdvisorDTO(output));
     }
 }

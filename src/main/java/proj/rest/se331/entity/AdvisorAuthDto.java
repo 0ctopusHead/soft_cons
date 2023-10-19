@@ -16,5 +16,6 @@ import java.util.List;
 public class AdvisorAuthDto {
     Long id;
     String name;
+    List<String> images;
     List<Role> roles = new ArrayList<>();
 }

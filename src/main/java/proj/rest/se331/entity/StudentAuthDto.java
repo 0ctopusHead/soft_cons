@@ -17,5 +17,6 @@ import java.util.List;
 public class StudentAuthDto {
     Long id;
     String name;
+    List<String> images;
     List<Role> roles = new ArrayList<>();
 }
