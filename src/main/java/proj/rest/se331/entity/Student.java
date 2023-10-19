@@ -2,6 +2,7 @@ package proj.rest.se331.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import proj.rest.se331.security.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,4 +28,6 @@ public class Student {
     @ManyToMany(mappedBy = "enrolledStudents")
     @Builder.Default
     List<Course> courses = new ArrayList<>();
+    @OneToOne
+    User user;
 }

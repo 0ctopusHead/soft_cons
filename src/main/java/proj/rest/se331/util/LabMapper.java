@@ -1,6 +1,7 @@
 package proj.rest.se331.util;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import proj.rest.se331.entity.*;
 
@@ -15,4 +16,8 @@ public interface LabMapper {
     List<AdvisorDTO> getAdvisorDTO(List<Advisor> advisors);
     CourseDTO getCourseDTO(Course course);
     List<CourseDTO> getCourseDTO(List<Course> courses);
+    @Mapping(target = "roles", source = "user.roles")
+    AdvisorAuthDto getAdvisorAuthDto(Advisor advisor);
+    @Mapping(target = "roles", source = "user.roles")
+    StudentAuthDto getStudentAuthDto(Student student);
 }

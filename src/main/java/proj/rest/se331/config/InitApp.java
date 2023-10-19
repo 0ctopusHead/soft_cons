@@ -35,6 +35,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         Student student;
         Advisor advisor1,advisor2,advisor3;
         Course course1,course2,course3,course4;
+        addUser();
         advisor1 = advisorRepository.save(Advisor.builder()
                 .name("Galvin")
                 .surname("Sullivan")
@@ -128,6 +129,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image04.png?alt=media&token=a34c4cc7-c024-4513-9a75-f0e98fb43bcf&_gl=1*1ct5mxr*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjI2ODguNjAuMC4w"))
                 .department("SE")
                 .build());
+        student.setUser(user3);
         student.setAdvisor(advisor2);
         student.getCourses().add(course3);
         student.getCourses().add(course4);
@@ -148,7 +150,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         advisor3.getAdvisees().add(student);
         course1.getEnrolledStudents().add(student);
         course4.getEnrolledStudents().add(student);
-        addUser();
+
+        user1.setAdvisor(advisor1);
+        user2.setAdvisor(advisor2);
+        advisor2.setUser(user2);
+        advisor1.setUser(user1);
     }
     User user1,user2,user3;
     private void addUser(){
