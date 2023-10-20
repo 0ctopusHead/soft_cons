@@ -57,6 +57,9 @@ public class AdvisorController {
         if(!advisor.getAcademicPosition().isEmpty()){
             advisorDb.setAcademicPosition(advisor.getAcademicPosition());
         }
+        if(!advisor.getDepartment().isEmpty()){
+            advisorDb.setDepartment(advisor.getDepartment());
+        }
         if(!advisor.getImages().isEmpty()){
             advisorDb.setImages(advisor.getImages());
         }
