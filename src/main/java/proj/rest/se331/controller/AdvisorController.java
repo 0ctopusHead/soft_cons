@@ -48,16 +48,16 @@ public class AdvisorController {
     @PostMapping("/advisors/edit/{id}")
     public ResponseEntity<?> edit(@RequestBody Advisor advisor, @PathVariable("id")Long id){
         Advisor advisorDb = advisorService.getAdvisor(id);
-        if(advisor.getName() != null){
+        if(!advisor.getName().isEmpty()){
             advisorDb.setName(advisor.getName());
         }
-        if(advisor.getSurname() != null){
+        if(!advisor.getSurname().isEmpty()){
             advisorDb.setSurname(advisor.getSurname());
         }
-        if(advisor.getAcademicPosition() != null){
+        if(!advisor.getAcademicPosition().isEmpty()){
             advisorDb.setAcademicPosition(advisor.getAcademicPosition());
         }
-        if(advisor.getImages() != null){
+        if(!advisor.getImages().isEmpty()){
             advisorDb.setImages(advisor.getImages());
         }
         Advisor output = advisorService.save(advisorDb);
