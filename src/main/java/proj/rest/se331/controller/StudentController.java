@@ -57,19 +57,19 @@ public class StudentController {
     @PostMapping("/students/editInformation/{id}")
     public ResponseEntity<?> editStudentInformation(@RequestBody Student student, @PathVariable("id")Long id){
         Student studentDb = studentService.getStudent(id);
-        if(student.getName() != null){
+        if(!student.getName().isEmpty()){
             studentDb.setName(student.getName());
         }
-        if(student.getStudentID() != null){
+        if(!student.getStudentID().isEmpty()){
             studentDb.setStudentID(student.getStudentID());
         }
-        if(student.getSurname() != null){
+        if(!student.getSurname().isEmpty()){
             studentDb.setSurname(student.getSurname());
         }
-        if(student.getDepartment() != null){
+        if(!student.getDepartment().isEmpty()){
             studentDb.setDepartment(student.getDepartment());
         }
-        if(student.getImages() != null){
+        if(!student.getImages().isEmpty()){
             studentDb.setImages(student.getImages());
         }
         Student output = studentService.save(studentDb);
