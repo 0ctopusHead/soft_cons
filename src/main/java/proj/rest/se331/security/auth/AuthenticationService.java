@@ -11,6 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import proj.rest.se331.entity.Student;
+import proj.rest.se331.repository.StudentRepository;
 import proj.rest.se331.security.config.JwtService;
 import proj.rest.se331.security.token.Token;
 import proj.rest.se331.security.token.TokenRepository;
@@ -28,6 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthenticationService {
   private final UserRepository repository;
+  private final StudentRepository studentRepository;
   private final TokenRepository tokenRepository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
@@ -42,6 +45,13 @@ public class AuthenticationService {
             .password(passwordEncoder.encode(request.getPassword()))
             .roles(List.of(Role.ROLE_STUDENT))
             .build();
+    Student student = Student.builder()
+            .studentID(request.getUsername())
+            .name(request.getFirstname())
+            .surname(request.getLastname())
+            .build();
+    studentRepository.save(student);
+    student.setUser(user);
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);
