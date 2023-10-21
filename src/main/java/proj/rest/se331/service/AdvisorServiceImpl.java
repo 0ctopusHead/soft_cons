@@ -2,6 +2,7 @@ package proj.rest.se331.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import proj.rest.se331.dao.AdvisorDao;
 import proj.rest.se331.entity.Advisor;
@@ -13,6 +14,10 @@ public class AdvisorServiceImpl implements AdvisorService {
     @Override
     public Page<Advisor> getAdvisors(Integer pageSize, Integer page){
         return advisorDao.getAdvisors(pageSize, page);
+    }
+    @Override
+    public Page<Advisor> getAdvisors(String query, Pageable page){
+        return advisorDao.getAdvisors(query,page);
     }
     @Override
     public Advisor getAdvisor(Long id){

@@ -13,7 +13,6 @@ import proj.rest.se331.entity.Student;
 import proj.rest.se331.repository.AdvisorRepository;
 import proj.rest.se331.repository.CourseRepository;
 import proj.rest.se331.repository.StudentRepository;
-import proj.rest.se331.security.user.Role;
 import proj.rest.se331.security.user.User;
 import proj.rest.se331.security.user.UserRepository;
 

@@ -2,6 +2,7 @@ package proj.rest.se331.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,18 @@ import java.util.List;
 public class AdvisorController {
     final AdvisorService advisorService;
     @GetMapping("advisors")
-    public ResponseEntity<?> getAdvisorLists(@RequestParam(value = "_limit",required = false)Integer perPage, @RequestParam(value = "_page", required = false)Integer page){
+    public ResponseEntity<?> getAdvisorLists(@RequestParam(value = "_limit",required = false)Integer perPage
+            , @RequestParam(value = "_page", required = false)Integer page
+            , @RequestParam(value = "_query",required = false)String query){
         perPage = perPage == null ? 3 : perPage;
         page = page == null ? 1 : page;
         Page<Advisor> pageOutput;
-        pageOutput = advisorService.getAdvisors(perPage, page);
+        if (query == null) {
+            pageOutput = advisorService.getAdvisors(perPage, page);
+        }else {
+            pageOutput = advisorService.getAdvisors(query, PageRequest.of(page - 1 , perPage));
+        }
+
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count",
                 String.valueOf(pageOutput.getTotalElements()));
