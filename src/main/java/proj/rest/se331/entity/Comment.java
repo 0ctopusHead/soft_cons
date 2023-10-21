@@ -1,20 +1,29 @@
 package proj.rest.se331.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"student_id","advisor_id"})})
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String context;
+    String commentContent;
+    LocalDateTime postedAt;
+    @ManyToOne
+    @JoinColumn(name = "advisor_id")
+    Advisor advisor;
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    Student student;
+    @OneToOne(mappedBy = "comment")
+    Answer answer;
 }

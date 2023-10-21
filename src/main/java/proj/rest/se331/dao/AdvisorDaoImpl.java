@@ -25,8 +25,5 @@ public class AdvisorDaoImpl implements AdvisorDao {
     public Advisor save(Advisor advisor){
         return advisorRepository.save(advisor);
     }
-    @Override
-    public Optional<Advisor> findById(Long id){
-        return  advisorRepository.findById(id);
-    }
+
 }

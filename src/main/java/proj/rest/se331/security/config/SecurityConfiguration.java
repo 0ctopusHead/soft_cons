@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                 authorize.requestMatchers("api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/uploadImage").permitAll()
                         .requestMatchers(HttpMethod.POST,"uploadAnnouncement").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/addComment").permitAll()
                       .anyRequest().authenticated();
             })
 

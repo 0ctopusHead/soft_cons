@@ -30,4 +30,6 @@ public class Advisor {
     List<Student> advisees = new ArrayList<>();
     @OneToOne
     User user;
+    @OneToMany(mappedBy = "advisor")
+    List<Comment> comment;
 }
