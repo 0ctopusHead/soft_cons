@@ -23,17 +23,17 @@ public class CommentController {
     final StudentService studentService;
     final AdvisorService advisorService;
     @PostMapping("/addComment/{id}")
-    public ResponseEntity<?> addComment(@RequestBody String content, @PathVariable("id")Long id) {
+    public ResponseEntity<?> addComment(@RequestBody Comment comment, @PathVariable("id")Long id) {
         Student studentDb = studentService.getStudent(id);
         Advisor advisorDb = advisorService.getAdvisor(studentDb.getAdvisor().getId());
-        Comment comment = Comment.builder()
-                .commentContent(content)
+        Comment new_comment = Comment.builder()
+                .commentContent(comment.getCommentContent())
                 .postedAt(LocalDateTime.now())
                 .build();
-        comment.setAdvisor(advisorDb);
-        comment.setStudent(studentDb);
-        studentDb.setComment(comment);
-        Comment output = commentService.save(comment);
+        new_comment.setAdvisor(advisorDb);
+        new_comment.setStudent(studentDb);
+        studentDb.setComment(new_comment);
+        Comment output = commentService.save(new_comment);
 
         return ResponseEntity.ok(LabMapper.INSTANCE.getCommentDTO(output));
     }

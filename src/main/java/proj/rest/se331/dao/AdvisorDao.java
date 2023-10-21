@@ -11,5 +11,4 @@ public interface AdvisorDao {
     Page<Advisor> getAdvisors(String query, Pageable page);
     Advisor getAdvisor(Long id);
     Advisor save(Advisor advisor);
-
 }

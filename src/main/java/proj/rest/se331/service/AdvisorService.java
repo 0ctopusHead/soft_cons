@@ -9,4 +9,5 @@ public interface AdvisorService {
     Page<Advisor> getAdvisors(String query, Pageable page);
     Advisor getAdvisor(Long id);
     Advisor save(Advisor advisor);
+
 }
