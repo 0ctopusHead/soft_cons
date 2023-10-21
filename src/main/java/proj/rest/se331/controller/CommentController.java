@@ -1,11 +1,11 @@
 package proj.rest.se331.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import proj.rest.se331.entity.Advisor;
 import proj.rest.se331.entity.Comment;
 import proj.rest.se331.entity.Student;
@@ -22,6 +22,16 @@ public class CommentController {
     final CommentService commentService;
     final StudentService studentService;
     final AdvisorService advisorService;
+    @GetMapping("/comments/{id}")
+    public ResponseEntity<?> getComment(@PathVariable("id")Long id){
+        Comment output = studentService.getStudent(id).getComment();
+        if(output != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getCommentDTO(output));
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The comment doesn't exist");
+        }
+    }
     @PostMapping("/addComment/{id}")
     public ResponseEntity<?> addComment(@RequestBody Comment comment, @PathVariable("id")Long id) {
         Student studentDb = studentService.getStudent(id);
