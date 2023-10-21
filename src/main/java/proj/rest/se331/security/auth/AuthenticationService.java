@@ -77,6 +77,8 @@ public class AuthenticationService {
             .name(request.getFirstname())
             .surname(request.getLastname())
             .build();
+    advisorRepository.save(advisor);
+    advisor.setUser(user);
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);

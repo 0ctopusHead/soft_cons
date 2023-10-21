@@ -74,4 +74,5 @@ public class AdvisorController {
         Advisor output = advisorService.save(advisorDb);
         return ResponseEntity.ok(LabMapper.INSTANCE.getAdvisorDTO(output));
     }
+
 }
