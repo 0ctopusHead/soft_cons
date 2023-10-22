@@ -7,13 +7,15 @@ import org.springframework.stereotype.Repository;
 import proj.rest.se331.entity.Files;
 import proj.rest.se331.repository.AnnouncementRepository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class AnnouncementDaoImpl implements AnnouncementDao {
     final AnnouncementRepository announcementRepository;
     @Override
-    public Page<Files> getFiles(Long id, Pageable page){
-        return announcementRepository.findByAdvisor_Id(id,page);
+    public List<Files> getFiles(Long id){
+        return announcementRepository.findByAdvisor_Id(id);
     }
     @Override
     public Files save(Files files){

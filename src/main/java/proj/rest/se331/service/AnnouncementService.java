@@ -4,7 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import proj.rest.se331.entity.Files;
 
+import java.util.List;
+
 public interface AnnouncementService {
-    Page<Files> getFiles(Long id, Pageable page);
+    List<Files> getFiles(Long id);
     Files save(Files files);
 }

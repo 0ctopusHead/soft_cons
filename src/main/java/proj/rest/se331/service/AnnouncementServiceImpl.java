@@ -7,13 +7,15 @@ import org.springframework.stereotype.Service;
 import proj.rest.se331.dao.AnnouncementDao;
 import proj.rest.se331.entity.Files;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AnnouncementServiceImpl implements AnnouncementService {
     final AnnouncementDao announcementDao;
     @Override
-    public Page<Files> getFiles(Long id, Pageable page){
-        return announcementDao.getFiles(id,page);
+    public List<Files> getFiles(Long id){
+        return announcementDao.getFiles(id);
     }
     @Override
     public Files save(Files files){
