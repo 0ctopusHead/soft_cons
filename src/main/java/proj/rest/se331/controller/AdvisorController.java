@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import proj.rest.se331.entity.Advisor;
+import proj.rest.se331.entity.Files;
+import proj.rest.se331.request.AnnouncementRequest;
 import proj.rest.se331.service.AdvisorService;
 import proj.rest.se331.util.LabMapper;
 
