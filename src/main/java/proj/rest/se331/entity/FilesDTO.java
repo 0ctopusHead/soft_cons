@@ -11,12 +11,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdvisorStudentDTO {
+public class FilesDTO {
     Long id;
-    String academicPosition;
-    String name;
-    String surname;
-    String department;
-    List<String> images;
-    List<FileAdvisorDTO> files;
+    String content;
+    List<String> files;
+    AdvisorFilesDTO advisor;
 }

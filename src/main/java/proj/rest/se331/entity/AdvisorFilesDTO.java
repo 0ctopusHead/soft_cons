@@ -11,12 +11,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdvisorStudentDTO {
+public class AdvisorFilesDTO {
     Long id;
     String academicPosition;
     String name;
     String surname;
     String department;
     List<String> images;
-    List<FileAdvisorDTO> files;
 }

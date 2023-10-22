@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import proj.rest.se331.security.user.User;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class Advisor {
     String department;
     @ElementCollection
     List<String> images;
-    @ElementCollection
-    List<String> files;
+    @OneToMany(mappedBy = "advisor")
+    @Builder.Default
+    List<Files> files = new ArrayList<>();
     @OneToMany(mappedBy = "advisor")
     @Builder.Default
     List<Student> advisees = new ArrayList<>();

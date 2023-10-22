@@ -19,6 +19,6 @@ public class AdvisorDTO {
     String surname;
     String department;
     List<String> images;
-    List<String> files;
+    List<FileAdvisorDTO> files;
     List<StudentAdvisorDTO> advisees;
 }

@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import proj.rest.se331.entity.Advisor;
+import proj.rest.se331.entity.Answer;
 import proj.rest.se331.entity.Comment;
 import proj.rest.se331.entity.Student;
+import proj.rest.se331.request.AnswerRequest;
 import proj.rest.se331.request.CommentRequest;
 import proj.rest.se331.service.AdvisorService;
+import proj.rest.se331.service.AnswerService;
 import proj.rest.se331.service.CommentService;
 import proj.rest.se331.service.StudentService;
 import proj.rest.se331.util.LabMapper;
@@ -24,6 +27,7 @@ public class CommentController {
     final CommentService commentService;
     final StudentService studentService;
     final AdvisorService advisorService;
+    final AnswerService answerService;
     @GetMapping("/comments/{id}")
     public ResponseEntity<?> getComment(@PathVariable("id")Long id){
         List<Comment> output = studentService.getStudent(id).getComment();
@@ -48,5 +52,16 @@ public class CommentController {
         Comment output = commentService.save(new_comment);
 
         return ResponseEntity.ok(LabMapper.INSTANCE.getCommentDTO(output));
+    }
+    @PostMapping("/answer")
+    public ResponseEntity<?> answer(@RequestBody AnswerRequest request){
+        Comment comment = commentService.getComment(request.getCommentId());
+        Answer new_answer = Answer.builder()
+                .content(request.getContent())
+                .build();
+        new_answer.setComment(comment);
+        comment.setAnswer(List.of(new_answer));
+        Answer output = answerService.save(new_answer);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(output));
     }
 }

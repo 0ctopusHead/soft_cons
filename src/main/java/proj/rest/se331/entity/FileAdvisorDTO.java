@@ -9,14 +9,10 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class AdvisorStudentDTO {
+@NoArgsConstructor
+public class FileAdvisorDTO {
     Long id;
-    String academicPosition;
-    String name;
-    String surname;
-    String department;
-    List<String> images;
-    List<FileAdvisorDTO> files;
+    String content;
+    List<String> files;
 }

@@ -18,6 +18,8 @@ public interface LabMapper {
     List<CourseDTO> getCourseDTO(List<Course> courses);
     AnswerDTO getAnswerDTO(Answer answer);
     List<AnswerDTO> getAnswerDTO(List<Answer> answers);
+    FilesDTO getFileDTO(Files file);
+    List<FilesDTO> getFileDTO(List<Files> files);
     CommentDTO getCommentDTO(Comment comment);
     List<CommentDTO> getCommentDTO(List<Comment> comments);
     @Mapping(target = "roles", source = "user.roles")
