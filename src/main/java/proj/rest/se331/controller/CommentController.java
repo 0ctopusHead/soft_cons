@@ -55,7 +55,7 @@ public class CommentController {
     }
     @PostMapping("/answer")
     public ResponseEntity<?> answer(@RequestBody AnswerRequest request){
-        Comment comment = commentService.getComment(request.getCommentId());
+        Comment comment = commentService.getComment(request.getComment().getId());
         Answer new_answer = Answer.builder()
                 .content(request.getContent())
                 .build();
