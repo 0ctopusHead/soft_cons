@@ -64,7 +64,7 @@ public class CommentController {
         Answer output = answerService.save(new_answer);
         return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(output));
     }
-    @GetMapping("/answer")
+    @PostMapping("/answers")
     public ResponseEntity<?> getAnswerByCommentId(@RequestBody Comment comment){
         List<Answer> answers = answerService.getAllAnswerByCommentId(comment.getId());
         if(answers != null){
