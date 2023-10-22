@@ -30,6 +30,6 @@ public class Student {
     List<Course> courses = new ArrayList<>();
     @OneToOne
     User user;
-    @OneToOne(mappedBy = "student")
-    Comment comment;
+    @OneToMany(mappedBy = "student")
+    List<Comment> comment;
 }

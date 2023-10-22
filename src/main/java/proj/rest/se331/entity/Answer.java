@@ -3,6 +3,8 @@ package proj.rest.se331.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Builder
 @Entity
@@ -14,6 +16,6 @@ public class Answer {
     @EqualsAndHashCode.Exclude
     Long id;
     String content;
-    @OneToOne
+    @ManyToOne
     Comment comment;
 }

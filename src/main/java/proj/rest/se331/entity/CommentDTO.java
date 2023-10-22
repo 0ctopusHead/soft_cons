@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,6 +18,6 @@ public class CommentDTO {
     LocalDateTime postedAt;
     AdvisorCommentDto advisor;
     StudentCommentDTO student;
-    AnswerCommentDTO answer;
+    List<AnswerCommentDTO> answer;
 
 }

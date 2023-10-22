@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"student_id","advisor_id"})})
+
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +20,9 @@ public class Comment {
     String commentContent;
     LocalDateTime postedAt;
     @ManyToOne
-    @JoinColumn(name = "advisor_id")
     Advisor advisor;
-    @OneToOne
-    @JoinColumn(name = "student_id")
+    @ManyToOne
     Student student;
-    @OneToOne(mappedBy = "comment")
-    Answer answer;
+    @OneToMany(mappedBy = "comment")
+    List<Answer> answer;
 }
