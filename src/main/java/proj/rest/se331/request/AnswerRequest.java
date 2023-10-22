@@ -1,6 +1,7 @@
 package proj.rest.se331.request;
 
 import lombok.*;
+import proj.rest.se331.entity.Comment;
 
 @Data
 @Builder
@@ -8,5 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 public class AnswerRequest {
     private String content;
-    private Long commentId;
+    private Comment comment;
 }
