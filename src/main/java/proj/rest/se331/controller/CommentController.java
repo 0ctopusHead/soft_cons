@@ -64,4 +64,14 @@ public class CommentController {
         Answer output = answerService.save(new_answer);
         return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(output));
     }
+    @GetMapping("/answer")
+    public ResponseEntity<?> getAnswerByCommentId(@RequestBody Long id){
+        List<Answer> answers = answerService.getAllAnswerByCommentId(id);
+        if(answers != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(answers));
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Answers does not exist");
+        }
+    }
 }
