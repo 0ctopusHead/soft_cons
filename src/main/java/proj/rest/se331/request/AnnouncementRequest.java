@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AnnouncementRequest {
     private String file;
-    private String content;
+    private String content
 }
