@@ -78,8 +78,9 @@ public class StudentController {
     @PostMapping("/students/editAdvisor/{id}")
     public ResponseEntity<?> editStudentAdvisor(@RequestBody Student student, @PathVariable("id")Long id){
         Student studentDb = studentService.getStudent(id);
-        studentDb.setAdvisor(student.getAdvisor());
-        Student output = studentService.editStudentAdvisor(studentDb);
+        Advisor advisorDb = advisorService.getAdvisor(student.getAdvisor().getId());
+        studentDb.setAdvisor(advisorDb);
+        Student output = studentService.save(studentDb);
         return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
     }
 }

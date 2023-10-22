@@ -40,5 +40,4 @@ public class CourseController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not exist");
         }
     }
-
 }
