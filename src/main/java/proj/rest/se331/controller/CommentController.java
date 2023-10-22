@@ -65,8 +65,8 @@ public class CommentController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(output));
     }
     @GetMapping("/answer")
-    public ResponseEntity<?> getAnswerByCommentId(@RequestBody Long id){
-        List<Answer> answers = answerService.getAllAnswerByCommentId(id);
+    public ResponseEntity<?> getAnswerByCommentId(@RequestBody Comment comment){
+        List<Answer> answers = answerService.getAllAnswerByCommentId(comment.getId());
         if(answers != null){
             return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(answers));
         }
