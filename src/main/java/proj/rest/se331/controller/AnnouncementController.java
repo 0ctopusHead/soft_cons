@@ -55,7 +55,7 @@ public class AnnouncementController {
     public ResponseEntity<?> announcement(@RequestBody AnnouncementRequest request, @PathVariable("id")Long id) {
         Advisor advisor = advisorService.getAdvisor(id);
         Files fileDb = Files.builder()
-                .files(List.of(request.getFile()))
+                .files(request.getFiles())
                 .content(request.getContent())
                 .build();
         fileDb.setAdvisor(advisor);
