@@ -39,6 +39,8 @@ public class StudentDaoImpl implements StudentDao {
         student.setAdvisor(advisor);
         return studentRepository.save(student);
     }
-
-
+    @Override
+    public Page<Student> getStudentByAdvisorId(Long id, Pageable page){
+        return studentRepository.findByAdvisor_Id(id,page);
+    }
 }

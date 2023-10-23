@@ -31,7 +31,7 @@ public class StudentController {
             pageOutput = studentService.getStudents(perPage, page);
         }
         else{
-            pageOutput =studentService.getStudents(query, PageRequest.of(page - 1, perPage));
+            pageOutput = studentService.getStudents(query, PageRequest.of(page - 1, perPage));
         }
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count",

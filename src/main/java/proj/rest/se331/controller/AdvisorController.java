@@ -10,17 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import proj.rest.se331.entity.Advisor;
-import proj.rest.se331.entity.Files;
-import proj.rest.se331.request.AnnouncementRequest;
+import proj.rest.se331.entity.Student;
 import proj.rest.se331.service.AdvisorService;
+import proj.rest.se331.service.StudentService;
 import proj.rest.se331.util.LabMapper;
 
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class AdvisorController {
     final AdvisorService advisorService;
+    final StudentService studentService;
     @GetMapping("advisors")
     public ResponseEntity<?> getAdvisorLists(@RequestParam(value = "_limit",required = false)Integer perPage
             , @RequestParam(value = "_page", required = false)Integer page
@@ -39,6 +39,20 @@ public class AdvisorController {
                 String.valueOf(pageOutput.getTotalElements()));
         return new ResponseEntity<>(LabMapper.INSTANCE.getAdvisorDTO(pageOutput.getContent())
         ,responseHeader, HttpStatus.OK);
+    }
+    @GetMapping("advisor/student/{id}")
+    public ResponseEntity<?> getAdvisorStudents(@PathVariable("id")Long id
+            ,@RequestParam(value = "_limit",required = false)Integer perPage
+            ,@RequestParam(value = "_page",required = false)Integer page){
+        perPage = perPage == null ? 2 : perPage;
+        page = page == null ? 1 : page;
+        Page<Student> pageOutput;
+        pageOutput = studentService.getStudentByAdvisorId(id,PageRequest.of(page - 1, perPage));
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.set("x-total-count",
+                String.valueOf(pageOutput.getTotalElements()));
+        return new ResponseEntity<>(LabMapper.INSTANCE.getStudentDTO(pageOutput.getContent())
+        ,responseHeader,HttpStatus.OK);
     }
     @GetMapping("advisors/{id}")
     public ResponseEntity<?> getAdvisor(@PathVariable("id")Long id){

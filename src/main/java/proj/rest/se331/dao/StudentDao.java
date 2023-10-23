@@ -10,5 +10,5 @@ public interface StudentDao {
     Student getStudent(Long id);
     Student save(Student student);
     Student editStudentAdvisor(Student student);
-
+    Page<Student> getStudentByAdvisorId(Long id, Pageable page);
 }

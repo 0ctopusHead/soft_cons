@@ -34,4 +34,8 @@ public class StudentServiceImpl implements StudentService {
     public Student editStudentAdvisor(Student student){
         return studentDao.editStudentAdvisor(student);
     }
+    @Override
+    public Page<Student> getStudentByAdvisorId(Long id, Pageable page){
+        return studentDao.getStudentByAdvisorId(id,page);
+    }
 }
