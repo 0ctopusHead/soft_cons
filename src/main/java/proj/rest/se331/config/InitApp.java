@@ -32,7 +32,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         Student student;
-        Advisor advisor1,advisor2,advisor3;
+        Advisor advisor1,advisor2,advisor3,advisor4;
         Course course1,course2,course3,course4;
         addUser();
         advisor1 = advisorRepository.save(Advisor.builder()
@@ -56,6 +56,13 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .academicPosition("Instructor")
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image123.jpg?alt=media&token=6100ae6e-66da-4a12-81f4-782b5a0a5864&_gl=1*1cjmvbx*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzY0MzcyOS4zNy4xLjE2OTc2NDQwMTAuOS4wLjA."))
                 .department("SE")
+                .build());
+        advisor4 = advisorRepository.save(Advisor.builder()
+                        .name("John")
+                        .surname("ChaoRai")
+                        .academicPosition("Admin")
+                        .images(List.of("https://cdn.discordapp.com/attachments/1088941023645933658/1166131241528082543/user_1.png?ex=65495f59&is=6536ea59&hm=40cc3e55a6c4b88d63989212bdab38401aafd411cac819a95ce8b5dc97b4ec61&"))
+                        .department("SE")
                 .build());
 
         course1 = courseRepository.save(Course.builder()
@@ -154,14 +161,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         course1.getEnrolledStudents().add(student);
         course4.getEnrolledStudents().add(student);
 
-        user1.setAdvisor(advisor1);
+        user9.setAdvisor(advisor1);
         user2.setAdvisor(advisor2);
         user8.setAdvisor(advisor3);
+        user1.setAdvisor(advisor4);
+        advisor4.setUser(user1);
         advisor2.setUser(user2);
-        advisor1.setUser(user1);
+        advisor1.setUser(user9);
         advisor3.setUser(user8);
     }
-    User user1,user2,user3,user4,user5,user6,user7,user8;
+    User user1,user2,user3,user4,user5,user6,user7,user8,user9;
     private void addUser(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         user1 = User.builder()
@@ -170,7 +179,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .email("admin@admin.com")
                 .username("admin")
                 .password(encoder.encode("admin"))
-                .roles(List.of(ROLE_ADMIN,ROLE_ADVISOR))
+                .roles(List.of(ROLE_ADMIN))
                 .build();
         user2 = User.builder()
                 .firstname("advisor1")
@@ -224,10 +233,19 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("advisor2")
                 .lastname("advisor2")
                 .email("advisor2@advisor.com")
-                .username("advisor")
+                .username("advisor2")
                 .password(encoder.encode("advisor2"))
                 .roles(List.of(ROLE_ADVISOR))
                 .build();
+        user9 = User.builder()
+                .firstname("advisor3")
+                .lastname("advisor3")
+                .email("advisor3@advisor.com")
+                .username("advisor3")
+                .password(encoder.encode("advisor3"))
+                .roles(List.of(ROLE_ADVISOR))
+                .build();
+
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
@@ -236,5 +254,6 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         userRepository.save(user6);
         userRepository.save(user7);
         userRepository.save(user8);
+        userRepository.save(user9);
     }
 }
