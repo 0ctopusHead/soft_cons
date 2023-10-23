@@ -78,8 +78,8 @@ public class CommentController {
     }
     @PostMapping("/editComment")
     public ResponseEntity<?> editComment(@RequestBody EditCommentRequest request){
-        Comment commentDb = commentService.getComment(request.getComment().getId());
-        commentDb.setCommentContent(request.getContent());
+        Comment commentDb = commentService.getComment(request.getId());
+        commentDb.setCommentContent(request.getCommentContent());
         commentDb.setPostedAt(LocalDateTime.now());
         commentService.save(commentDb);
         return ResponseEntity.ok(LabMapper.INSTANCE.getCommentDTO(commentDb));

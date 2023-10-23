@@ -192,6 +192,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("student2")
                 .lastname("student2")
                 .email("student2@student@com")
+                .username("student2")
                 .password(encoder.encode("student2"))
                 .roles(List.of(ROLE_STUDENT))
                 .build();
@@ -199,6 +200,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("student3")
                 .lastname("student3")
                 .email("student3@student.com")
+                .username("student3")
                 .password(encoder.encode("student3"))
                 .roles(List.of(ROLE_STUDENT))
                 .build();
@@ -206,6 +208,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("student4")
                 .lastname("student4")
                 .email("student4@student.com")
+                .username("student4")
                 .password(encoder.encode("student4"))
                 .roles(List.of(ROLE_STUDENT))
                 .build();
@@ -213,6 +216,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("student5")
                 .lastname("student5")
                 .email("student5@student.com")
+                .username("student5")
                 .password(encoder.encode("student5"))
                 .roles(List.of(ROLE_STUDENT))
                 .build();
@@ -220,6 +224,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .firstname("advisor2")
                 .lastname("advisor2")
                 .email("advisor2@advisor.com")
+                .username("advisor")
                 .password(encoder.encode("advisor2"))
                 .roles(List.of(ROLE_ADVISOR))
                 .build();

@@ -9,6 +9,8 @@ import proj.rest.se331.dao.StudentDao;
 import proj.rest.se331.entity.Advisor;
 import proj.rest.se331.entity.Student;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
@@ -35,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.editStudentAdvisor(student);
     }
     @Override
-    public Page<Student> getStudentByAdvisorId(Long id, Pageable page){
-        return studentDao.getStudentByAdvisorId(id,page);
+    public List<Student> getStudentByAdvisorId(Long id){
+        return studentDao.getStudentByAdvisorId(id);
     }
 }

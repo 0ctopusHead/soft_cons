@@ -15,6 +15,8 @@ import proj.rest.se331.service.AdvisorService;
 import proj.rest.se331.service.StudentService;
 import proj.rest.se331.util.LabMapper;
 
+import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -41,18 +43,15 @@ public class AdvisorController {
         ,responseHeader, HttpStatus.OK);
     }
     @GetMapping("advisor/student/{id}")
-    public ResponseEntity<?> getAdvisorStudents(@PathVariable("id")Long id
-            ,@RequestParam(value = "_limit",required = false)Integer perPage
-            ,@RequestParam(value = "_page",required = false)Integer page){
-        perPage = perPage == null ? 2 : perPage;
-        page = page == null ? 1 : page;
-        Page<Student> pageOutput;
-        pageOutput = studentService.getStudentByAdvisorId(id,PageRequest.of(page - 1, perPage));
-        HttpHeaders responseHeader = new HttpHeaders();
-        responseHeader.set("x-total-count",
-                String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(LabMapper.INSTANCE.getStudentDTO(pageOutput.getContent())
-        ,responseHeader,HttpStatus.OK);
+    public ResponseEntity<?> getAdvisorStudents(@PathVariable("id")Long id){
+        List<Student> pageOutput;
+        pageOutput = studentService.getStudentByAdvisorId(id);
+       if (pageOutput != null){
+        return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(pageOutput));
+       }
+       else{
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given advisor id is not exist");
+       }
     }
     @GetMapping("advisors/{id}")
     public ResponseEntity<?> getAdvisor(@PathVariable("id")Long id){

@@ -10,6 +10,9 @@ import proj.rest.se331.entity.Advisor;
 import proj.rest.se331.entity.Student;
 import proj.rest.se331.repository.AdvisorRepository;
 import proj.rest.se331.repository.StudentRepository;
+
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 @Profile("db")
@@ -40,7 +43,7 @@ public class StudentDaoImpl implements StudentDao {
         return studentRepository.save(student);
     }
     @Override
-    public Page<Student> getStudentByAdvisorId(Long id, Pageable page){
-        return studentRepository.findByAdvisor_Id(id,page);
+    public List<Student> getStudentByAdvisorId(Long id){
+        return studentRepository.findByAdvisor_Id(id);
     }
 }

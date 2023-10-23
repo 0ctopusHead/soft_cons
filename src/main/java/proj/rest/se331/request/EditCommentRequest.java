@@ -11,6 +11,7 @@ import proj.rest.se331.entity.Comment;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EditCommentRequest {
-    private Comment comment;
-    private String content;
+    private Long id;
+    private String commentContent;
+    private Long advisorId;
 }
