@@ -12,6 +12,8 @@ import proj.rest.se331.entity.Comment;
 import proj.rest.se331.entity.Student;
 import proj.rest.se331.request.AnswerRequest;
 import proj.rest.se331.request.CommentRequest;
+import proj.rest.se331.request.EditAnswerRequest;
+import proj.rest.se331.request.EditCommentRequest;
 import proj.rest.se331.service.AdvisorService;
 import proj.rest.se331.service.AnswerService;
 import proj.rest.se331.service.CommentService;
@@ -73,5 +75,20 @@ public class CommentController {
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Answers does not exist");
         }
+    }
+    @PostMapping("/editComment")
+    public ResponseEntity<?> editComment(@RequestBody EditCommentRequest request){
+        Comment commentDb = commentService.getComment(request.getComment().getId());
+        commentDb.setCommentContent(request.getContent());
+        commentDb.setPostedAt(LocalDateTime.now());
+        commentService.save(commentDb);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getCommentDTO(commentDb));
+    }
+    @PostMapping("editAnswer")
+    public ResponseEntity<?> editAnswer(@RequestBody EditAnswerRequest request){
+        Answer answer = answerService.getAnswer(request.getAnswer().getId());
+        answer.setContent(request.getContent());
+        answerService.save(answer);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(answer));
     }
 }
