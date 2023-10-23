@@ -86,6 +86,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image01.png?alt=media&token=12ef7857-3717-4f5e-bc7c-75ce5066222f&_gl=1*u6jf87*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjM2MzQuNjAuMC4w"))
                 .department("SE")
                 .build());
+        student.setUser(user7);
         student.setAdvisor(advisor1);
         student.getCourses().add(course1);
         student.getCourses().add(course2);
@@ -100,6 +101,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image02.png?alt=media&token=81131862-f4cc-4b34-85eb-eef17b819b38&_gl=1*1dauoxj*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjM2NzAuMjQuMC4w"))
                 .department("SE")
                 .build());
+        student.setUser(user4);
         student.setAdvisor(advisor1);
         student.getCourses().add(course2);
         student.getCourses().add(course3);
@@ -114,6 +116,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image03.png?alt=media&token=3b83491a-1186-4829-8ba9-8154676865b2&_gl=1*17d8kih*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjM2ODUuOS4wLjA."))
                 .department("SE")
                 .build());
+        student.setUser(user5);
         student.setAdvisor(advisor2);
         student.getCourses().add(course4);
         student.getCourses().add(course1);
@@ -143,6 +146,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .images(List.of("https://firebasestorage.googleapis.com/v0/b/se331-final-project.appspot.com/o/image05.png?alt=media&token=b409b5bf-736e-4c1f-ac95-8e36dfafde7e&_gl=1*1tcmzm*_ga*MTA3MDc2MTc5OC4xNjg5NTczNzcw*_ga_CW55HF8NVT*MTY5NzYyMjMxNS4zNS4xLjE2OTc2MjM3MTYuNjAuMC4w"))
                 .department("SE")
                 .build());
+        student.setUser(user6);
         student.setAdvisor(advisor3);
         student.getCourses().add(course1);
         student.getCourses().add(course4);
@@ -152,10 +156,12 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
         user1.setAdvisor(advisor1);
         user2.setAdvisor(advisor2);
+        user8.setAdvisor(advisor3);
         advisor2.setUser(user2);
         advisor1.setUser(user1);
+        advisor3.setUser(user8);
     }
-    User user1,user2,user3;
+    User user1,user2,user3,user4,user5,user6,user7,user8;
     private void addUser(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         user1 = User.builder()
@@ -164,7 +170,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .email("admin@admin.com")
                 .username("admin")
                 .password(encoder.encode("admin"))
-                .roles(List.of(ROLE_ADMIN))
+                .roles(List.of(ROLE_ADMIN,ROLE_ADVISOR))
                 .build();
         user2 = User.builder()
                 .firstname("advisor1")
@@ -182,8 +188,48 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .password(encoder.encode("student1"))
                 .roles(List.of(ROLE_STUDENT))
                 .build();
+        user4 = User.builder()
+                .firstname("student2")
+                .lastname("student2")
+                .email("student2@student@com")
+                .password(encoder.encode("student2"))
+                .roles(List.of(ROLE_STUDENT))
+                .build();
+        user5 = User.builder()
+                .firstname("student3")
+                .lastname("student3")
+                .email("student3@student.com")
+                .password(encoder.encode("student3"))
+                .roles(List.of(ROLE_STUDENT))
+                .build();
+        user6 = User.builder()
+                .firstname("student4")
+                .lastname("student4")
+                .email("student4@student.com")
+                .password(encoder.encode("student4"))
+                .roles(List.of(ROLE_STUDENT))
+                .build();
+        user7 = User.builder()
+                .firstname("student5")
+                .lastname("student5")
+                .email("student5@student.com")
+                .password(encoder.encode("student5"))
+                .roles(List.of(ROLE_STUDENT))
+                .build();
+        user8 = User.builder()
+                .firstname("advisor2")
+                .lastname("advisor2")
+                .email("advisor2@advisor.com")
+                .password(encoder.encode("advisor2"))
+                .roles(List.of(ROLE_ADVISOR))
+                .build();
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(user5);
+        userRepository.save(user6);
+        userRepository.save(user7);
+        userRepository.save(user8);
     }
 }
