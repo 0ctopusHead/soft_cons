@@ -86,7 +86,7 @@ public class CommentController {
     }
     @PostMapping("editAnswer")
     public ResponseEntity<?> editAnswer(@RequestBody EditAnswerRequest request){
-        Answer answer = answerService.getAnswer(request.getAnswer().getId());
+        Answer answer = answerService.getAnswer(request.getId());
         answer.setContent(request.getContent());
         answerService.save(answer);
         return ResponseEntity.ok(LabMapper.INSTANCE.getAnswerDTO(answer));

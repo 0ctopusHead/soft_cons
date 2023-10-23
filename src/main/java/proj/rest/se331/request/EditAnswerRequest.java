@@ -11,6 +11,6 @@ import proj.rest.se331.entity.Answer;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EditAnswerRequest {
-    private Answer answer;
+    private Long id;
     private String content;
 }
