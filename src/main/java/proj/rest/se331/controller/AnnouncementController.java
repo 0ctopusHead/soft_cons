@@ -40,6 +40,17 @@ public class AnnouncementController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The advisor does not exist");
         }
     }
+    @GetMapping("/advisorAnnouncement/{id}")
+    public ResponseEntity<?> getAdvisorAnnouncement(@PathVariable("id")Long id){
+        Advisor advisor = advisorService.getAdvisor(id);
+        List<Files> output = announcementService.getFiles(advisor.getId());
+        if(output != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getFileDTO(output));
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The advisor does not exist");
+        }
+    }
     @PostMapping("/createAnnouncement/{id}")
     public ResponseEntity<?> announcement(@RequestBody AnnouncementRequest request, @PathVariable("id")Long id) {
         Advisor advisor = advisorService.getAdvisor(id);
